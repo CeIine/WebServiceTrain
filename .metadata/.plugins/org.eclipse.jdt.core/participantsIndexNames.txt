@@ -1,0 +1,25 @@
+INDEX VERSION 1.131
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1343010046.index
+\TrainClient\src\main\java
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3799147258.index
+\T\src\main\java
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2524422564.index
+\TrainClient\src\main\java
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3191629715.index
+\WebServiceClient\src\main\java
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3685756841.index
+\T\src\main\java
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3546148275.index
+\WebServiceSOAP\src\main\java
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3107666639.index
+\WebServiceClient\src\main\java
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1778529252.index
+\WebServiceSOAP\src\main\java
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1906074111.index
+\T\src\main\java
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3458302502.index
+\WebServiceSOAP\src\main\java
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\231756912.index
+\TrainClient\src\main\java
+C:\Users\liuce\Desktop\ENSIIE\S3\Web_Service\Projet\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1433229044.index
+\WebServiceClient\src\main\java

@@ -1,0 +1,213 @@
+package tps.ws.deployment;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+
+
+public class Client {
+	private String url = "jdbc:mysql://localhost:3306/train";
+
+	public String connexion(String mail, String mdp){
+        
+		try {
+			// Connect to the database
+			Connection co = DriverManager.getConnection(url,"root","password");
+			String sql = "SELECT * FROM client WHERE mail = ? and mdp = ?";
+			
+			PreparedStatement statement = co.prepareStatement(sql);
+			statement.setString(1, mail);
+			statement.setString(2, mdp);
+			ResultSet resultSet = statement.executeQuery();
+			
+			if(resultSet.next()) {
+				co.close();
+				return "Vous êtes connecté !";
+			}
+			else {
+				co.close();
+				return "Mail ou Mot de passe incorrecte !";
+			}
+			
+		}
+		catch(Exception e) {
+			System.out.println("Error connecting to MySQL database");
+			e.printStackTrace();
+			return e.getMessage();
+		}
+	}
+	
+	public void incription(String nom, String prenom, String mail, String mdp){
+		try {
+			Connection co = DriverManager.getConnection(url, "root","password");
+			String sql = "INSERT INTO client (nom, prenom, mail, mdp) VALUES (?,?,?,?)";
+			
+			PreparedStatement statement = co.prepareStatement(sql);
+			statement.setString(1, nom);
+			statement.setString(2, prenom);
+			statement.setString(3, mail);
+			statement.setString(4, mdp);
+			
+			statement.executeUpdate();
+			co.close();
+		}
+		catch(SQLException e) {
+			System.out.println("Error connecting to MySQL database");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public String searchAllerRetour(String gareD, String gareA, String dateD, String dateR, String classe){
+		//Appel Api REST
+		///BilletsAller/Depart/<param1>/Arrive/<param2>/dateheureD/<param3>/classe/<param4>
+		///BilletsRetour/Depart/<param1>/Arrive/<param2>/dateheureR/<param3>/classe/<param4>
+		URL urlAller;
+		URL urlRetour;
+		try {
+			urlAller = new URL("http://127.0.0.1:5000/BilletsAller/Depart/"+gareD+"/Arrive/"+gareA+"/dateheureD/"+dateD+"/classe/"+classe);
+			urlAller = new URL("http://127.0.0.1:5000/BilletsRetour/Depart/"+gareD+"/Arrive/"+gareA+"/dateheureR/"+dateR+"/classe/"+classe);
+			
+//			HttpURLConnection con = (HttpURLConnection) urlAller.openConnection();
+//	        con.setRequestMethod("GET");
+//	        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+//	        String inputLine = null;
+//	        StringBuffer response = new StringBuffer();
+//	        while ((inputLine = in.readLine()) != null) {
+//	            response.append(inputLine);
+//	        }
+//	        in.close();
+//	        // Print the response
+//	        //System.out.println(response.toString());
+//	        
+//	        String jsonResponse = response.toString();
+//	        JSONObject jsonObject = new JSONObject(jsonResponse);
+//	        JSONArray billetsArray = jsonObject.getJSONArray("Mes Billets disponibles");
+
+			HttpURLConnection co = (HttpURLConnection) urlAller.openConnection();
+	        co.setRequestMethod("GET");
+	        BufferedReader inR = new BufferedReader(new InputStreamReader(co.getInputStream()));
+	        String inputLineR = null;
+	        StringBuffer responseR = new StringBuffer();
+	        while ((inputLineR = inR.readLine()) != null) {
+	        	responseR.append(inputLineR);
+	        }
+	        inR.close();
+	        // Print the response
+	        //System.out.println(response.toString());
+	        
+	        String jsonResponseR = responseR.toString();
+	        JSONObject jsonObjectR = new JSONObject(jsonResponseR);
+	        JSONArray billetsArrayR = jsonObjectR.getJSONArray("Mes Billets disponibles");
+	        String result = "\nMes Billets Retour disponibles:\n";
+
+	        for (int i = 0; i < billetsArrayR.length(); i++) {
+	            JSONArray billet = billetsArrayR.getJSONArray(i);
+	            String billetString = "";
+	            for (int j = 0; j < billet.length(); j++) {
+	                if (j == 3 || j == 7) {
+	                    billetString += billet.getInt(j) + " ";
+	                } else {
+	                    billetString += billet.getString(j) + " ";
+	                }
+	            }
+	            result += billetString + "\n";
+	        }
+	        return result;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Pas de billets disponible";
+	}
+	
+	public String searchAllerSimple(String gareD, String gareA, String dateD, String classe){
+		//Appel Api REST
+		////BilletsAller/Depart/<param1>/Arrive/<param2>/dateheureD/<param3>/classe/<param4>
+		URL url;
+		try {
+			url = new URL("http://127.0.0.1:5000/BilletsAller/Depart/"+gareD+"/Arrive/"+gareA+"/dateheureD/"+dateD+"/classe/"+classe);
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+	        con.setRequestMethod("GET");
+	        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	        String inputLine = null;
+	        StringBuffer response = new StringBuffer();
+	        while ((inputLine = in.readLine()) != null) {
+	            response.append(inputLine);
+	        }
+	        in.close();
+	        // Print the response
+	        //System.out.println(response.toString());
+
+	        String jsonResponse = response.toString();
+	        JSONObject jsonObject = new JSONObject(jsonResponse);
+	        JSONArray billetsArray = jsonObject.getJSONArray("Mes Billets disponibles");
+
+	        String result = "\nMes Billets disponibles:\n";
+
+	        for (int i = 0; i < billetsArray.length(); i++) {
+	            JSONArray billet = billetsArray.getJSONArray(i);
+	            String billetString = "";
+	            for (int j = 0; j < billet.length(); j++) {
+	                if (j == 3 || j == 7) {
+	                    billetString += billet.getInt(j) + " ";
+	                } else {
+	                    billetString += billet.getString(j) + " ";
+	                }
+	            }
+	            result += billetString + "\n";
+	        }
+	        return result;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Pas de billets disponible";
+	}
+	
+
+	
+	public String bookingTrain(int id) {
+        URL url;
+		try {
+			url = new URL("http://127.0.0.1:5000/Billets/IDReservation/"+id);
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+	        con.setRequestMethod("GET");
+	        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+	        String inputLine;
+	        StringBuffer response = new StringBuffer();
+	        while ((inputLine = in.readLine()) != null) {
+	            response.append(inputLine);
+	        }
+	        in.close();
+	        
+	        String responseString = response.toString().trim();
+	        String isTrue = "\"true\"";
+
+	        if(responseString.equals(isTrue)) {
+	        	return "Réservation réussie";
+	        }
+	        else {
+	        	return "Erreur de réservation ou le train  n est pas disponible";
+	        }
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			return e.getMessage();
+		}
+		
+	}
+
+}

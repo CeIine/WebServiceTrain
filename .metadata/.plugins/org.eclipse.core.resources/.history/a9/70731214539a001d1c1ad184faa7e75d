@@ -1,0 +1,59 @@
+package src;
+
+
+import javax.xml.soap.*;
+import org.w3c.dom.Node;
+
+public class TestClient {
+	
+	
+	public static void main(String[] args) throws Exception {
+        // Create the connection
+        SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
+        SOAPConnection soapConnection = soapConnectionFactory.createConnection();
+
+        // Send SOAP Message to SOAP Server
+        String url = "http://localhost:8081/WebServiceSOAP/services/Client";
+        SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(), url);
+
+        // Print the SOAP Response
+        System.out.print("Response SOAP Message:");
+        soapResponse.writeTo(System.out);
+
+        soapConnection.close();
+
+	}
+	
+    private static SOAPMessage createSOAPRequest() throws Exception {
+        MessageFactory messageFactory = MessageFactory.newInstance();
+        SOAPMessage soapMessage = messageFactory.createMessage();
+        SOAPPart soapPart = soapMessage.getSOAPPart();
+
+        // SOAP Envelope
+        SOAPEnvelope envelope = soapPart.getEnvelope();
+        envelope.addNamespaceDeclaration("tps", "http://deployment.ws.tps");
+
+        // SOAP Body
+        SOAPBody soapBody = envelope.getBody();
+        SOAPElement searchAllerRetour = soapBody.addChildElement("searchAllerRetour", "tps");
+        SOAPElement gareD = searchAllerRetour.addChildElement("gareD");
+        gareD.addTextNode("paris");
+        SOAPElement gareA = searchAllerRetour.addChildElement("gareA");
+        gareA.addTextNode("marseille");
+        SOAPElement dateD = searchAllerRetour.addChildElement("dateD");
+        dateD.addTextNode("2022-10-05_10:00:00");
+        SOAPElement dateR = searchAllerRetour.addChildElement("dateR");
+        dateR.addTextNode("2022-10-05_15:00:00");
+        SOAPElement classe = searchAllerRetour.addChildElement("classe");
+        classe.addTextNode("Standard");
+
+        soapMessage.saveChanges();
+
+        /* Print the request message */
+        System.out.print("Request SOAP Message:");
+        soapMessage.writeTo(System.out);
+        System.out.println();
+
+        return soapMessage;
+    }
+}

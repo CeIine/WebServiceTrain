@@ -1,0 +1,109 @@
+package tps.ws.deployment;
+
+import java.util.Scanner;
+
+public class TestClient {
+	
+	
+	public static void main(String[] args) {
+		Client clt = new Client();
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Bienvenue dans l'application AIDIU !");
+
+		boolean isConnect = true;
+        while (isConnect) {
+            System.out.println("Se connecter ou S'inscrire ? (1) ou (2)");
+            System.out.print("Entrer un numero: ");
+            int input = scanner.nextInt();
+            scanner.nextLine();
+            if (input == 1) {
+                System.out.print("Entrer mail: ");
+                String mail = scanner.nextLine();
+                System.out.print("Entrer mot de passe: ");
+                String mdp = scanner.nextLine();
+
+                String connexionMsg = clt.connexion(mail, mdp);
+                System.out.println(connexionMsg+"\n");
+                if (connexionMsg.equals("Vous êtes connecté !")) {
+                    isConnect = false;
+                }
+            } else if (input == 2) {
+                System.out.print("Entrer nom: ");
+                String nom = scanner.nextLine();
+                System.out.print("Entrer prenom: ");
+                String prenom = scanner.nextLine();
+                System.out.print("Entrer mail: ");
+                String mail = scanner.nextLine();
+                System.out.print("Entrer mot de passe: ");
+                String mdp = scanner.nextLine();
+
+                clt.incription(nom, prenom, mail, mdp);
+
+                System.out.println("Inscription réussie !");
+            }
+        }
+        
+        while(true) {
+        	System.out.println("\nRecherche d'un train: ");
+            System.out.println("Aller-Retour ou Aller Simple ? (1) ou (2)");
+            System.out.print("Entrer un numero: ");
+            int input = scanner.nextInt();
+            scanner.nextLine();
+            if (input == 1) {
+                System.out.print("Entrer gare de depart: ");
+                String gareD = scanner.nextLine();
+                System.out.print("Entrer gare d'arrivee: ");
+                String gareA = scanner.nextLine();
+                System.out.print("Entrer date de depart: ");
+                String dateD = scanner.nextLine();
+                System.out.print("Entrer date de retour: ");
+                String dateR = scanner.nextLine();
+                System.out.print("Entrer classe: ");
+                String classe = scanner.nextLine();
+                
+                String billets = clt.searchAllerRetour(gareD, gareA, dateD, dateR, classe);
+                System.out.println(billets);
+            } else if (input == 2) {
+                System.out.print("Entrer gare de depart: ");
+                String gareD = scanner.nextLine();
+                System.out.print("Entrer gare d'arrivee: ");
+                String gareA = scanner.nextLine();
+                System.out.print("Entrer date de depart: ");
+                String dateD = scanner.nextLine();
+                System.out.print("Entrer classe: ");
+                String classe = scanner.nextLine();
+                
+                String billets = clt.searchAllerSimple(gareD, gareA, dateD, classe);
+                System.out.println(billets);
+            }
+            
+            boolean isReserve = true;
+            
+            while(isReserve) {
+                System.out.println("\nVoulez-vous réserver un ou plusieurs train ? Oui (1) ou Non (2)");
+                System.out.print("Entrer un numero: ");
+                input = scanner.nextInt();
+                scanner.nextLine();
+
+                if (input == 1) {
+                    System.out.print("Entrer IDReservation du train a reserver: ");
+                    int id = scanner.nextInt();
+                    String res = clt.bookingTrain(id);
+                    System.out.println(res);
+                } else if (input == 2) {
+                	isReserve = false;
+                }
+            }
+        }
+	
+//        Entrer un numero: 1
+//        Entrer gare de depart: paris
+//        Entrer gare d'arrivee: marseille
+//        Entrer date de depart: 2022-10-05_10:00:00
+//        Entrer date de retour: 2022-10-05_15:00:00
+//        Entrer classe: Standard
+
+	}
+}

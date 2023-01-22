@@ -1,0 +1,10 @@
+127.0.0.1 - - [17/Jan/2023:21:38:29 +0100] "GET / HTTP/1.1" 404 681
+0:0:0:0:0:0:0:1 - - [17/Jan/2023:21:38:31 +0100] "GET /WebServiceSOAP/ HTTP/1.1" 200 3480
+0:0:0:0:0:0:0:1 - - [17/Jan/2023:21:38:31 +0100] "GET /WebServiceSOAP/axis2-web/images/asf-logo.gif HTTP/1.1" 200 5866
+0:0:0:0:0:0:0:1 - - [17/Jan/2023:21:38:31 +0100] "GET /WebServiceSOAP/axis2-web/css/axis-style.css HTTP/1.1" 200 1587
+0:0:0:0:0:0:0:1 - - [17/Jan/2023:21:38:31 +0100] "GET /WebServiceSOAP/axis2-web/images/axis_l.jpg HTTP/1.1" 200 12340
+0:0:0:0:0:0:0:1 - - [17/Jan/2023:21:38:31 +0100] "GET /favicon.ico HTTP/1.1" 404 692
+0:0:0:0:0:0:0:1 - - [17/Jan/2023:21:38:33 +0100] "GET /WebServiceSOAP/services/listServices HTTP/1.1" 200 4372
+0:0:0:0:0:0:0:1 - - [17/Jan/2023:21:40:03 +0100] "GET /WebServiceSOAP/services/Client?wsdl HTTP/1.1" 200 12188
+0:0:0:0:0:0:0:1 - - [17/Jan/2023:21:40:17 +0100] "GET /WebServiceSOAP/services/Client?wsdl HTTP/1.1" 200 12188
+0:0:0:0:0:0:0:1 - - [17/Jan/2023:21:42:08 +0100] "POST /WebServiceSOAP/services/Client.ClientHttpEndpoint/search HTTP/1.1" 200 409

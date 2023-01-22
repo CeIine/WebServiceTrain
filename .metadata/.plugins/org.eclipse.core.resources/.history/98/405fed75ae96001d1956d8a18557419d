@@ -1,0 +1,65 @@
+package tps.ws.deployment;
+
+import java.util.Scanner;
+
+public class TestClient {
+	
+	
+	public static void main(String[] args) {
+		Client clt = new Client();
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Bienvenue dans l'application SNCF !");
+
+		boolean isConnect = true;
+        while (isConnect) {
+            System.out.println("Se connecter ou S'inscrire ? (1) ou (2)");
+            System.out.print("Entrer un numero: ");
+            int input = scanner.nextInt();
+            scanner.nextLine();
+            if (input == 1) {
+                System.out.print("Entrer mail: ");
+                String mail = scanner.nextLine();
+                System.out.print("Entrer mot de passe: ");
+                String mdp = scanner.nextLine();
+
+                String connexionMsg = clt.connexion(mail, mdp);
+                System.out.println(connexionMsg);
+                if (connexionMsg.equals("Vous êtes connecté !")) {
+                    isConnect = false;
+                }
+            } else if (input == 2) {
+                System.out.print("Entrer nom: ");
+                String nom = scanner.nextLine();
+                System.out.print("Entrer prenom: ");
+                String nom = scanner.nextLine();
+                System.out.print("Entrer mail: ");
+                String mail = scanner.nextLine();
+                System.out.print("Entrer mot de passe: ");
+                String mdp = scanner.nextLine();
+
+                clt.incription(test, test, test, test);
+
+                System.out.println("Inscription réussie !");
+                isConnect = false;
+            }
+        }
+        scanner.close();
+    
+
+
+//		String res = clt.connexion("user@user.com", "user");
+//		System.out.println(res);
+//		
+//		String r = clt.connexion("aaaa", "aa");
+//		System.out.println(r);
+		
+//		String test = "celine";
+//		clt.incription(test, test, test, test);
+		//2022-10-05_10:00:00
+		clt.bookingTrain(4);
+		
+		String billets = clt.search("paris","marseille","2022-10-05_10:00:00","2022-10-05_15:00:00","Standard");
+		System.out.println(billets);
+	}
+}

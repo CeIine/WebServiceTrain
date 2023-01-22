@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.jst.ws.client.type.java">
+		<item value="http://localhost:8081/WebServiceSOAP/services/HelloWorld?wsdl"/>
+		<item value="http://localhost:8081/WebServiceSOAP/services/Client?wsdl"/>
+		<item value="http://localhost:8080/WebServiceSOAP/services/Client?wsdl"/>
+	</list>
+</section>

@@ -1,0 +1,16 @@
+127.0.0.1 - - [06/Jan/2023:20:10:37 +0100] "GET / HTTP/1.1" 404 681
+0:0:0:0:0:0:0:1 - - [06/Jan/2023:20:10:38 +0100] "GET /WebServiceSOAP/ HTTP/1.1" 200 3480
+0:0:0:0:0:0:0:1 - - [06/Jan/2023:20:10:38 +0100] "GET /WebServiceSOAP/axis2-web/css/axis-style.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [06/Jan/2023:20:10:38 +0100] "GET /WebServiceSOAP/axis2-web/images/asf-logo.gif HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [06/Jan/2023:20:10:38 +0100] "GET /WebServiceSOAP/axis2-web/images/axis_l.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [06/Jan/2023:20:10:40 +0100] "GET /WebServiceSOAP/services/listServices HTTP/1.1" 200 4281
+0:0:0:0:0:0:0:1 - - [06/Jan/2023:20:10:44 +0100] "GET /WebServiceSOAP/services/Client?wsdl HTTP/1.1" 200 6955
+127.0.0.1 - - [06/Jan/2023:20:11:05 +0100] "GET /WebServiceSOAP/services/Client?wsdl HTTP/1.1" 200 6955
+127.0.0.1 - - [06/Jan/2023:20:11:05 +0100] "GET /WebServiceSOAP/services/Client?wsdl HTTP/1.1" 200 6955
+127.0.0.1 - - [06/Jan/2023:20:11:31 +0100] "GET /WebServiceSOAP/services/Client?wsdl HTTP/1.1" 200 6955
+127.0.0.1 - - [06/Jan/2023:20:11:31 +0100] "GET /WebServiceSOAP/services/Client?wsdl HTTP/1.1" 200 6955
+127.0.0.1 - - [06/Jan/2023:20:11:31 +0100] "GET /WebServiceSOAP/services/Client?wsdl HTTP/1.1" 200 6955
+127.0.0.1 - - [06/Jan/2023:20:11:31 +0100] "GET /WebServiceSOAP/services/Client?wsdl HTTP/1.1" 200 6955
+127.0.0.1 - - [06/Jan/2023:20:11:32 +0100] "GET /WebServiceSOAP/services/Client?wsdl HTTP/1.1" 200 6955
+127.0.0.1 - - [06/Jan/2023:20:11:35 +0100] "GET /WebServiceSOAP/services/Client?wsdl HTTP/1.1" 200 6955
+192.168.1.16 - - [06/Jan/2023:20:27:45 +0100] "GET /BasicDeviceDescription.xml HTTP/1.1" 404 707
